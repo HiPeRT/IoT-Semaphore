@@ -7,7 +7,7 @@ Download the latest version of raspbian from
 
 #### Hardware connection
 
-![alt text](https://git.hipert.unimore.it/gbrilli/Prystine-Semaphore/raw/master/hw/connections.jpg)
+![alt text](https://github.com/HiPeRT/IoT-Semaphore/raw/master/hw/connections.jpg)
 
 
 - Connect the power distribution board to a car battery using the supplied terminals.
@@ -19,7 +19,7 @@ Download the latest version of raspbian from
 - Connect each GPIOs specified in the configuration file to the control module.
 
 
-![alt text](https://git.hipert.unimore.it/gbrilli/Prystine-Semaphore/raw/master/hw/semaphore.jpg)
+![alt text](https://github.com/HiPeRT/IoT-Semaphore/raw/master/hw/semaphore.jpg)
 
 
 #### Build the project
@@ -162,4 +162,4 @@ It is possible to stop and start the controller with `sudo ./semaphore conf.JSON
 
 If you want to build your own relay board, this is the schematic we used in our demo
 
-![alt text](https://git.hipert.unimore.it/gbrilli/Prystine-Semaphore/raw/master/hw/schematics/controller_schematic.png)
+![alt text](https://github.com/HiPeRT/IoT-Semaphore/raw/master/hw/schematics/controller_schematic.png)
