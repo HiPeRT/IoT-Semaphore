@@ -1,0 +1,68 @@
+{
+	"semname" : "sem1",
+	"semaphores": [
+		{
+			"//": "Semaforo TLB2",
+			"r-pin": 18,
+			"g-pin": 24,
+			"y-pin": 25,
+			"position": {
+				"latitude"   : 0.1,
+				"longitude"	 : 0.2,
+				"orientation": 2
+			}
+		},{
+			"//": "Semaforo TLB1",
+			"r-pin": 5,
+			"g-pin": 6,
+			"y-pin": 13,
+			"position": {
+				"latitude"   : 0.1,
+				"longitude"	 : 0.2,
+				"orientation": 2
+			}
+		},{
+			"//": "Semaforo TLA2",
+			"r-pin": 17,
+			"g-pin": 27,
+			"y-pin": 4,
+			"position": {
+				"latitude"   : 0.1,
+				"longitude"	 : 0.2,
+				"orientation": 1
+			}
+		},{
+			"//": "Semaforo TLA1",
+			"r-pin": 16,
+			"g-pin": 20,
+			"y-pin": 21,
+			"position": {
+				"latitude"   : 0.1,
+				"longitude"	 : 0.2,
+				"orientation": 1
+			}
+		}
+	],
+	"delays": {
+		"//": "Time for every phase in seconds",
+		"R": 10,
+		"G": 8,
+		"Y": 2
+	},
+	"modbus-master": {
+		"//": "169.254.53.170",
+		"ip-addr": "192.168.1.202",
+		"port"   : 1502,
+		"debug"  : 1
+	},
+	"//": "1: Control via web/HTTP",
+	"//": "2: Control via Modbus", 
+	"//": "3: Internal control thread",
+	"ctrl_type" : 3,
+	"http_server.enable" : true,
+	"//": "http://192.168.10.236",
+	"http_server.url": "http:/your.server.com",
+	"masa_server.enable" : true,
+	"masa_server.url": "127.0.0.1",
+	"masa_server.port": 8888
+}
