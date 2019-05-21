@@ -162,4 +162,4 @@ It is possible to stop and start the controller with `sudo ./semaphore conf.JSON
 
 If you want to build your own relay board, this is the schematic we used in our demo
 
-![alt text](hhttps://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/hw/schematics/controller_schematic.png)
+![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/hw/schematics/controller_schematic.png)
