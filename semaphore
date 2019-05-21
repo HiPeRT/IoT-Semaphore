@@ -1,0 +1,21 @@
+#! /bin/bash
+##
+## copy this script in /etc/init.d
+##
+
+case "$1" in
+	start)
+		echo "semaphore is starting"
+		/home/pi/Documents/prystine-semaphore/build/Semaphore /home/pi/Documents/prystine-semaphore/conf.JSON
+		;;
+	stop)
+		echo "semaphore is ending"
+		killall -s SIGINT /home/pi/Documents/prystine-semaphore/build/Semaphore
+		;;
+	*)
+		echo "Usage: /etc/init.d/semaphore {start|stop}"
+		exit 1
+		;;
+esac
+
+exit 0

@@ -32,21 +32,24 @@ Message * MasaProtocolHandler::prepare_message(std::vector<Semaphore *> S, uint3
 
     m->t_stamp_ms = time_in_ms();
 
-    uint16_t tlState;
-    uint32_t tlCountdown;
+    uint8_t effectiveSemaphores = 2;
+
+    uint16_t tlState     = tlState_sem[0];
+    uint32_t tlCountdown = tlCountdown_sem[0];
     
-    for(int i = 0; i < S.size(); ++i) {
+    //for(int i = 0; i < S.size(); ++i) {
+    for(int i = 0; i < effectiveSemaphores; ++i) {
 
         TrafficLight l;
 
-        if(i % 2 == 0) {
+        /*if(i % 2 == 0) {
             tlCountdown = tlCountdown_sem[0];
             tlState = tlState_sem[0];
         }
         else{
             tlCountdown = tlCountdown_sem[1];
             tlState = tlState_sem[1];
-        }
+        }*/
 
         switch (tlState) {
         case SemaphoreState::Green:

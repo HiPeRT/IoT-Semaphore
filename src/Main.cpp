@@ -12,6 +12,8 @@
 #include "Gpio.h"
 #include "MasaProtocolHandler.h"
 
+#define MODBUS
+
 #ifdef MODBUS
 	#include "ModbusHandler.h"
 #endif

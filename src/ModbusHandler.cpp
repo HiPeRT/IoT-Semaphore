@@ -9,12 +9,7 @@ ModbusHandler::ModbusHandler(std::string ip_addr, int port, int dbg){
 
 	_ctx = modbus_new_tcp(_ip_addr.c_str(), _port);
 
-	struct timeval tmo;
-
-	tmo.tv_sec  = 2;
-	tmo.tv_usec = 0;
-	
-	modbus_set_response_timeout(_ctx, &tmo);
+	modbus_set_response_timeout(_ctx, 0, 2000000);
 	
 	if(_ctx == NULL){
 		std::cout << "Unable to allocate context" << std::endl;
