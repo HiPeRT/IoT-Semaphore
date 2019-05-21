@@ -1,6 +1,9 @@
 # IoT Semaphore
 Electronics and Software for a semaphore controlled by Raspberry Pi 3
 
+![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/img/class.png)
+![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/img/prystine.png)
+
 ### Getting started
 Download the latest version of raspbian from
 `https://www.raspberrypi.org/downloads/raspbian/` and flashing it in an SD card.
