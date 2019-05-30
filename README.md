@@ -1,9 +1,6 @@
 # IoT Semaphore
 Electronics and Software for a semaphore controlled by Raspberry Pi 3
 
-![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/img/class.png)
-![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/img/prystine.png)
-
 ### Getting started
 Download the latest version of raspbian from
 `https://www.raspberrypi.org/downloads/raspbian/` and flashing it in an SD card.
@@ -166,3 +163,15 @@ It is possible to stop and start the controller with `sudo ./semaphore conf.JSON
 If you want to build your own relay board, this is the schematic we used in our demo
 
 ![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/hw/schematics/controller_schematic.png)
+
+
+### Contacts and credits
+
+For any issues, feel free to contact gianluca DOT brilli  | paolo DOT burgio AT unimore DOT it
+
+This work was supported by the Prystine Project, funded by Electronic Components and Systems for European Leadership Joint Undertaking (ECSEL JU) in collaboration with the European Union's H2020 Framework Programme and National Authorities, under grant agreement n° 783190, and by the Class project, funded by European Union’s Horizon 2020 research and innovation programme under the grant agreement No 780622.
+
+
+![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/img/class.png)
+
+![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/img/prystine.png)
