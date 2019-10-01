@@ -1,7 +1,7 @@
 #ifndef MASAPROTOCOL_H
 #define MASAPROTOCOL_H
 
-#include <masa_protocol/send.hpp>
+#include "../MASA_protocol/include/send.hpp"
 #include "Semaphore.h"
 
 class MasaProtocolHandler{

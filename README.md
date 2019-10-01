@@ -55,6 +55,16 @@ cd libmodbus
 ./configure && make install
 sudo ldconfig
 ```
+clone this project with:
+
+`git clone --recursive https://github.com/HiPeRT/IoT-Semaphore`
+
+copy the cereal header library inside the path folder:
+
+```bash
+cd IoT-Semaphore
+sudo cp -r MASA_protocol/cereal/include/cereal/ /usr/include/
+```
 
 Compile the project with:
 
