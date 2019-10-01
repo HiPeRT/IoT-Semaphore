@@ -352,9 +352,9 @@ void *modbusThrd(void *args) {
 				// TODO manage if Modbus is disconnected
 			}
 		}
-		else {
-			error("Modbus is offline");
-		}
+		//else {
+		//	error("Modbus is offline");
+		//}
 	}
 } // modbusThrd
 #endif
