@@ -7,23 +7,10 @@
 #include <ctime>
 #include <chrono>
 
-//ITI - includes for UART
-#define UART_BL5
-
-#ifdef	UART_BL5
-	#include <unistd.h> 
-	#include <fcntl.h> 
-	#include <termios.h>
-	#include <errno.h>
-#endif
-//
-
-#include </usr/include/rapidjson/document.h>
+#include <rapidjson/document.h>
 
 #include "Gpio.h"
 #include "MasaProtocolHandler.h"
-
-//#define MODBUS
 
 #ifdef MODBUS
 	#include "ModbusHandler.h"
@@ -39,7 +26,7 @@ pthread_t internalWorker, serverWorker, pinsWorker, modbusWorker, masaWorker;
 pthread_mutex_t lckStdout, lckValues;
 
 #ifdef MODBUS
-	ModbusHandler *mbh;
+ModbusHandler *mbh;
 #endif
 
 MasaProtocolHandler *mph;
@@ -55,85 +42,6 @@ uint16_t tlStateSrv, ctrlTypeSrv;
 
 uint16_t tlStateInternal[2] { SemaphoreState::Green, SemaphoreState::Red };
 uint32_t tlCountdownInternal[2] = { d_g, d_r };
-
-#ifdef UART_BL5
-	//ITI///
-	int uart0 = -1;
-	/*
-	* ITI UART initialization 
-	*/
-	int8_t InitUART(void) {
-		uart0 = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY); 
-		if (uart0 == -1){
-			pthread_mutex_lock(&lckStdout);
-			std::cout << "------------ UART ERROR ----------" << std::endl;
-			pthread_mutex_unlock(&lckStdout);	
-			return -1;
-		}
-		// UART configuration 
-		struct termios options;
-		tcgetattr(uart0, &options);
-		options.c_cflag = B115200 | CS8 | CLOCAL | CREAD; // set baudrate
-		options.c_iflag = IGNPAR;
-		options.c_oflag = 0;
-		options.c_lflag = 0;
-		tcflush(uart0, TCIFLUSH);
-		tcsetattr(uart0, TCSANOW, &options);
-		return 0;
-	}	
-	/*
-	* ITI - UART TX traffic light information
-	*/
-	void TxUART(uint16_t State,uint16_t TimeState){
-
-		uint8_t tx_buffer[16];
-		
-		uint8_t *p_tx_buffer;	
-		
-		//////ITI///////
-		/*
-		* TX message 
-		* {0x02} start byte
-		* {0x1?} state byte {0x10}-green {0x11}-green+yellow {0x12}-red
-		* {0x??} Time to change 
-		* {0xFD} Byte to close 
-		*/		
-		float TrafficLightLatitude = S[0]->getLatitude();
-		uint8_t *TFLaByte = (uint8_t *) &TrafficLightLatitude;
-		float TrafficLightLongitude = S[0]->getLongitude();
-		uint8_t *TFLoByte = (uint8_t *) &TrafficLightLongitude;
-		int TrafficLightOrientation = S[0]->getOrientation();
-		uint8_t *TFOByte = (uint8_t *) &TrafficLightOrientation;
-		
-		p_tx_buffer = &tx_buffer[0];
-		*p_tx_buffer++ = 0x02;
-		*p_tx_buffer++ = State + 0x0F; 
-		*p_tx_buffer++ = TimeState;		
-		*p_tx_buffer++ = TFLaByte[3];
-		*p_tx_buffer++ = TFLaByte[2];
-		*p_tx_buffer++ = TFLaByte[1];
-		*p_tx_buffer++ = TFLaByte[0];
-		*p_tx_buffer++ = TFLoByte[3];
-		*p_tx_buffer++ = TFLoByte[2];
-		*p_tx_buffer++ = TFLoByte[1];
-		*p_tx_buffer++ = TFLoByte[0];
-		*p_tx_buffer++ = TFOByte[1];
-		*p_tx_buffer++ = TFOByte[0];
-		*p_tx_buffer++ = 0xFD;
-			
-		if (uart0 != -1)
-		{	
-			int count = write(uart0, &tx_buffer[0], (p_tx_buffer - &tx_buffer[0]));		//Filestream, bytes to write, number of bytes to write
-			if (count < 0)
-			{
-				pthread_mutex_lock(&lckStdout);
-				std::cout << "------------ UART ERROR ----------" << std::endl;
-				pthread_mutex_unlock(&lckStdout);
-			}
-		}
-	}
-#endif
-/////////////////////
 
 /*
  * 0 PHASE
@@ -197,17 +105,8 @@ void exiting(int sig) {
 
 void * masaHandler(void *args) {
 
-	int sleeptime = 100; 
-	
-	/////ITI INIT UART//////
-	#ifdef UART_BL5
-		InitUART();
-		pthread_mutex_lock(&lckStdout);
-		std::cout << "------------Starting UART----------" << std::endl;
-		pthread_mutex_unlock(&lckStdout);
-	#endif
-	////////////////////////////
-	
+	int sleeptime = 100;
+
 	while(true) {
 		uint16_t phase, tlMode, tlState, ctrlType, timeToChange;
 
@@ -224,10 +123,6 @@ void * masaHandler(void *args) {
 			tlState = tlStateInternal[0];
 			timeToChange = tlCountdownInternal[0];
 		}
-		#ifdef UART_BL5
-			TxUART(tlState, timeToChange);
-		#endif
-		
 		pthread_mutex_unlock(&lckValues);
 
 		Message *m = mph->prepare_message(
@@ -353,11 +248,10 @@ void *tlPinsThrd(void *args) {
 		//
 		//pthread_mutex_lock(&lckValues);
 
-		/* ITI
+	
 		pthread_mutex_lock(&lckStdout);
 		std::cout << "[tlPinsThrd()] ctrlTypeSrv is " << std::to_string(ctrlTypeSrv) << std::endl;
 	 	pthread_mutex_unlock(&lckStdout);
-		*/
 		
 		uint16_t temp;
 		switch(ctrlTypeSrv) {
@@ -456,9 +350,9 @@ void *modbusThrd(void *args) {
 				// TODO manage if Modbus is disconnected
 			}
 		}
-		else {
-			error("Modbus is offline");
-		}
+		//else {
+		//	error("Modbus is offline");
+		//}
 	}
 } // modbusThrd
 #endif

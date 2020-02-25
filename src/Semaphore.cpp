@@ -108,18 +108,12 @@ void Semaphore::getCtrl(uint16_t *tlState, uint16_t *ctrlType) {
 	std::string res = HttpClient::Get(url);
 
 	if(!res.empty() && res.compare("\"\"") != 0) {
-		//std::cout << "[getCtrl] Response is '" << res << "'" << std::endl;
+		std::cout << "[getCtrl] Response is '" << res << "'" << std::endl;
 		Document conf;
 		conf.Parse(res.c_str());
 
 		*tlState = conf["status"]["tl_state"].GetInt();
 		*ctrlType = conf["status"]["ctrl_type"].GetInt();
-
-		// std::cout 	<< "From server CTRL is " << *ctrlType
-		// 			<< " STATE is " << *tlState << std::endl;
-	}
-	else {
-	//	std::cout << "No ctrl received from server" << std::endl;
 	}
 }
 
@@ -170,6 +164,12 @@ void Semaphore::WritePins(int id, uint16_t tlState) {
 	 		S[id]->getLed(Semaphore::Y)->writePin(1);
 	 		S[id]->getLed(Semaphore::G)->writePin(1);
 	 		dump(id, "YELLOW + GREEN");
+	 		break;
+		  case SemaphoreState::Yellow:
+			S[id]->getLed(Semaphore::R)->writePin(0);
+	 		S[id]->getLed(Semaphore::Y)->writePin(1);
+	 		S[id]->getLed(Semaphore::G)->writePin(0);
+	 		dump(id, "YELLOW");
 	 		break;
 		  case SemaphoreState::Red:
 	 		S[id]->getLed(Semaphore::R)->writePin(1);

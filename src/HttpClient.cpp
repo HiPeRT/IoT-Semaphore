@@ -14,7 +14,7 @@ std::string HttpClient::Get(std::string url, std::string token)
 
 std::string HttpClient::Call(std::string verb, std::string url, std::string token, std::string postBody)
 {
-//    std::cout << "Starting " << verb << " request to " << url << std::endl;
+	//std::cout << "Starting " << verb << " request to " << url << std::endl;
     
     bool post = verb.compare("POST") ==  0;
 
@@ -48,16 +48,15 @@ std::string HttpClient::Call(std::string verb, std::string url, std::string toke
 		request.setOpt(curlpp::Options::WriteStream(&result));
 
 		request.perform();
+				
+		//if(post)
+		//{
+		//	std::cout << "Response code: " 
+		//		  << curlpp::infos::ResponseCode::get(request) 
+		//		  << " - Full response: " << result.str() << std::endl;
+		//}
 		
-		/*
-		if(post)
-		{
-			std::cout << "Response code: " 
-				  << curlpp::infos::ResponseCode::get(request) 
-				  << " - Full response: " << result.str() << std::endl;
-		}
-		*/
-	        if(curlpp::infos::ResponseCode::get(request) == 200)
+	    if(curlpp::infos::ResponseCode::get(request) == 200)
 			return result.str();
 		else
 			return "";

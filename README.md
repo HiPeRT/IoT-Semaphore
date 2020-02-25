@@ -57,7 +57,7 @@ sudo ldconfig
 ```
 clone this project with:
 
-`git clone --recursive https://github.com/HiPeRT/IoT-Semaphore`
+`git clone --recursive gitlab@git.hipert.unimore.it:gbrilli/prystine-semaphore.git`
 
 copy the cereal header library inside the path folder:
 

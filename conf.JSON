@@ -51,7 +51,7 @@
 	},
 	"modbus-master": {
 		"//": "169.254.53.170",
-		"ip-addr": "192.168.33.251",
+		"ip-addr": "192.168.33.250",
 		"port"   : 1052,
 		"debug"  : 1
 	},
@@ -59,10 +59,10 @@
 	"//": "2: Control via Modbus", 
 	"//": "3: Internal control thread",
 	"ctrl_type" : 3,
-	"http_server.enable" : false,
+	"http_server.enable" : true,
 	"//": "http://192.168.10.236",
-	"http_server.url": "http:/your.server.com",
+	"http_server.url": "https://masa.hipert.unimore.it",
 	"masa_server.enable" : true,
-	"masa_server.url": "192.168.12.4",
+	"masa_server.url": "192.168.1.18",
 	"masa_server.port": 8888
 }
