@@ -120,6 +120,8 @@ static uint16_t revertTlState(uint16_t tlState) {
 		return SemaphoreState::Green;
 	else if(tlState == SemaphoreState::Off)
 		return SemaphoreState::Off;
+	else if(tlState == SemaphoreState::Yellow)	// no need to change phase
+		return SemaphoreState::Yellow;
 	else
 		error("[revertTlState] tlState " + std::to_string(tlState) + " NOT SUPPORTED");
 } // revertTlState
