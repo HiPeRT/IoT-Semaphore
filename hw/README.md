@@ -18,3 +18,9 @@ Download the latest version of raspbian from `https://www.raspberrypi.org/downlo
 
 
 ![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/hw/semaphore.jpg)
+
+## Controller schematics
+
+If you want to build your own relay board, this is the schematic we used in our demo
+
+![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/hw/schematics/controller_schematic.png)

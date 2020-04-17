@@ -156,11 +156,6 @@ Finally, we note that the first two semaphores are respectively the TL0 and the 
 - with the use_server flag it is possible to transmit the traffic light status to the url specified in the server. In particular use an internal IP address.
 
 It is possible to stop and start the controller with `sudo ./semaphore conf.JSON` and stopping it with ctrl+C.
-### Controller schematic
-
-If you want to build your own relay board, this is the schematic we used in our demo
-
-![alt text](https://raw.githubusercontent.com/HiPeRT/IoT-Semaphore/master/hw/schematics/controller_schematic.png)
 
 
 ### Contacts and credits
